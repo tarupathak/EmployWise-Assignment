@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# User Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React app for managing users with features such as user login, viewing users' list, editing, and deleting users. The app communicates with a backend API to fetch, update, and delete user data.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Login Page**: Users can log in with their credentials (email and password).
+- **Users List Page**: Displays a paginated list of users with options to edit or delete users.
+- **Edit User**: Users can edit their first name, last name, and email.
+- **Delete User**: Users can delete users from the list.
+- **API Integration**: Uses Axios for API requests to a mock backend API.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Axios (for API requests)
+- React Router (for routing between pages)
+- Tailwind CSS (for styling)
+- React Toastify (for notifications)
+- LocalStorage (for storing login token)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+### 1. Clone the Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/your-username/user-management-app.git
+cd user-management-app
+```
 
-### `npm run build`
+### 2. Install Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install the required dependencies using npm or yarn:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Configure API
 
-### `npm run eject`
+The app is set up to use a mock API (`https://reqres.in/api`). You can modify the `src/config/api.js` file to point to your own API if needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 4. Run the App Locally
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To start the development server, run:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This will start the app on [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### 5. Build the App for Production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To create a production build of the app, run:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build
+```
 
-### Code Splitting
+This will generate a `build/` folder containing the production-ready code.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 6. Deployment
 
-### Analyzing the Bundle Size
+You can deploy the app to a cloud provider like [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/). Simply follow their documentation to deploy React applications.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## API Endpoints Used
 
-### Making a Progressive Web App
+- **Login**: `POST /api/login`
+  - Request body: `{ "email": "user@example.com", "password": "password123" }`
+  - Response: `{ "token": "some-token" }`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Users List**: `GET /api/users`
+  - Fetches a paginated list of users.
 
-### Advanced Configuration
+- **Get User by ID**: `GET /api/users/{id}`
+  - Fetches a user’s details by their ID.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Edit User**: `PUT /api/users/{id}`
+  - Request body: `{ "first_name": "John", "last_name": "Doe", "email": "john.doe@example.com" }`
+  - Response: `{ "message": "User updated successfully" }`
 
-### Deployment
+- **Delete User**: `DELETE /api/users/{id}`
+  - Response: `{ "message": "User deleted successfully" }`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## File Structure
 
-### `npm run build` fails to minify
+```
+src/
+  components/
+    EditUser.js           # Edit user form component
+    Login.js              # Login form component
+    UsersList.js          # List of users with edit and delete buttons
+  config/
+    api.js                # Axios instance for making API requests
+  pages/
+    LoginPage.js          # Login page
+    UsersListPage.js      # Users list page
+  App.js                  # Main app component with routing
+  index.css               # Global styles with Tailwind CSS
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Notes
+
+- This app uses `reqres.in` as a mock API for users. You can replace the API endpoints with your own in the `api.js` file.
+- The app uses React Router for navigation between pages.
+- It stores the login token in `localStorage`. If the token is not available, the app will redirect the user to the login page.
+
+## Screenshots
+
+### Login Page
+![Login Page](screenshots/login-page.png)
+
+### Users List Page
+![Users List Page](screenshots/users-list.png)
+
+### Edit User Page
+![Edit User Page](screenshots/edit-user.png)
+
+## Contributing
+
+Feel free to fork the repository and submit pull requests. All contributions are welcome!
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
